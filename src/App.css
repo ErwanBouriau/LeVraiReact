@@ -2,6 +2,7 @@
   height: 100vh;
   width: 100%;
   display: flex;
+
 }
 
 .filters {
@@ -14,4 +15,15 @@
 .profiles {
   height: 100%;
   width: 75%;
+}
+
+
+
+.titreF {
+  color: blue;
+  margin-left: 25%;
+}
+
+.sexe {
+  margin-left: 50px;
 }
