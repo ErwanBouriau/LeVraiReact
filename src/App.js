@@ -25,6 +25,7 @@ class App extends React.Component {
 	}
 
 	render() {
+		const matcher = <Match profiles={personnages} sexe={this.state.sexe} age={this.state.age} />;
 	return (
 	<div className="content">
 		<div className="menu">
@@ -44,7 +45,7 @@ class App extends React.Component {
 				</div>
 				<h3>Espèces</h3>
 				<div className="filtersItem">
-					<EspeceListe className="espece" onClick={ this.handleEspece } />
+					<EspeceListe className="espece" matcher={matcher} />
 				</div>
 			</div>
 
@@ -54,7 +55,7 @@ class App extends React.Component {
 
 		</div>
 		<div className="profiles">
-			<Match profiles={personnages} sexe={this.state.sexe} age={this.state.age} />
+			{matcher}
 		</div>
 	</div>
   );

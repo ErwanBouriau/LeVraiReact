@@ -44,36 +44,59 @@ const names = [
   'Wookie'
 ];
 
-export default function MultipleSelect() {
-  const classes = useStyles();
-  const [personName, setPersonName] = React.useState([]);
+export default class MultipleSelect extends React.Component {
 
-  const handleChange = event => {
-    setPersonName(event.target.value);
+  constructor(props) {
+    super(props);
+    this.state = {selected: []};
+    this.handleChange = this.handleChange.bind(this);
+  }
+  
+  handleChange (event) {
+    
+    let difference = names.filter(x => !event.target.value.includes(x))[0];
+    let tabTemp = this.state.selected;
+
+    if (this.state.selected.includes(difference)) {
+      const index = tabTemp.indexOf(difference);
+      tabTemp.splice(index,1);
+    }
+    else {
+      tabTemp.push(difference);
+    }
+    this.setState({selected: tabTemp});
+    console.log(this.state.selected);
+    this.props.matcher.updateEspeces(this.state.selected);
+    
   }; 
+
+  render() {
+    //const classes = useStyles();
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
+      <FormControl>
         <Select
           labelId="demo-mutiple-checkbox-label"
           id="demo-mutiple-checkbox"
           multiple
-          value={personName}
-          onChange={handleChange}
+          value={names}
+          onChange={this.handleChange}
           input={<Input />}
-          renderValue={selected => (
-            <div className={classes.chips}>
-              {selected.map(value => (
-                <Chip key={value} label={value} className={classes.chip} />
-              ))}
-            </div>
-          )}
+          renderValue={selected => {
+            return (
+              <div>
+                {selected.map(value => (
+                  <Chip key={value} label={value} />
+                ))}
+              </div>
+            )
+          }}
           MenuProps={MenuProps}
         >
-          {names.map(name => (
+          {names.map((name, index) => (
             <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
+              <Checkbox />
               <ListItemText primary={name} />
             </MenuItem>
           ))}
@@ -81,4 +104,5 @@ export default function MultipleSelect() {
       </FormControl>
     </div>
   );
+  }
 }
