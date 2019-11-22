@@ -2,14 +2,12 @@
   height: 100vh;
   width: 100%;
   display: flex;
-
 }
 
-.filters {
+.menu {
   height: 100%;
   width: 25%;
   border-right: 1px solid lightgray;
-  color: blue;
 }
 
 .profiles {
@@ -17,13 +15,30 @@
   width: 75%;
 }
 
+.filters {
+  padding: 20px;
+}
 
+.filtersItem {
+  margin-bottom: 70px;
+  margin-top: 10px;
+}
 
 .titreF {
   color: blue;
-  margin-left: 25%;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.sexe {
-  margin-left: 50px;
+.valider {
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 30px;
+}
+
+.filters h3{
+  color: blue;
 }
