@@ -1,11 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
 const useStyles = makeStyles({
   root: {
-    width: 250,
+    width: 200,
   },
 });
 
@@ -21,15 +20,28 @@ export default function RangeSlider() {
     setValue(newValue);
   };
 
+  const marks = [
+    {
+      value: 20,
+    },
+    {
+      value: 40,
+    },
+    {
+      value: 60,
+    },
+    {
+      value: 80,
+    },
+  ];
+
   return (
     <div className={classes.root}>
-      <Typography id="range-slider" gutterBottom>
-        Âge
-      </Typography>
       <Slider
         value={value}
         onChange={handleChange}
-        valueLabelDisplay="on"
+        valueLabelDisplay="auto"
+        marks={marks}
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
       />

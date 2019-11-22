@@ -4,11 +4,10 @@
   display: flex;
 }
 
-.filters {
+.menu {
   height: 100%;
   width: 25%;
   border-right: 1px solid lightgray;
-  color: blue;
 }
 
 .profiles {
@@ -18,15 +17,30 @@
   flex-wrap: wrap;
 }
 
+.filters {
+  padding: 20px;
+}
+
+.filtersItem {
+  margin-bottom: 70px;
+  margin-top: 10px;
+}
+
 .titreF {
   color: blue;
-  margin-left: 25%;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.sexe {
-  margin-left: 50px;
+.valider {
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 30px;
 }
 
-.card {
+.filters h3{
   color: blue;
 }
