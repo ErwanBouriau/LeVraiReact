@@ -2,7 +2,6 @@
   height: 100vh;
   width: 100%;
   display: flex;
-
 }
 
 .filters {
@@ -15,9 +14,11 @@
 .profiles {
   height: 100%;
   width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
-
-
 
 .titreF {
   color: blue;
@@ -26,4 +27,8 @@
 
 .sexe {
   margin-left: 50px;
+}
+
+.card {
+  color: blue;
 }
