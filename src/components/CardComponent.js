@@ -1,53 +1,36 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { grey } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-
-const useStyles = makeStyles(theme => ({
-  card: {
-    maxWidth: 345,
-    margin: 15,
-    backgroundColor: grey[100]
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-}));
+import RoomIcon from '@material-ui/icons/Room';
 
 export default class RecipeReviewCard extends React.Component {
 
 render() {
-    //const classes = useStyles();
-
+    const styles = {
+        card: {
+          width: 345,
+          height: 500,
+          margin: 15,
+        },
+        photo: {
+            height: "80%",
+          },
+      };
 
     const {name, first_name, localisation} = this.props;
     return (
-        <Card>
-        <CardMedia />
+        <Card style={styles.card}>
+        <CardMedia style={styles.photo} image={require ("../profil-male.png")}/>
         <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="h4" color="textSecondary" component="p">
                 {first_name} {name || ""} 
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-                {localisation}
+            <Typography variant="body1" color="textSecondary" component="p">
+            <RoomIcon /> {localisation}
             </Typography>
         </CardContent>
-        <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="share">
-                <ShareIcon />
-            </IconButton>
-        </CardActions>
     </Card>
     )
 }
