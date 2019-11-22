@@ -16,7 +16,7 @@ export default function OutlinedButtons() {
 
   return (
     <div>
-      <Button variant="outlined" color="secondary" className="boutonValider">
+      <Button variant="outlined" className={classes.button}>
         Valider
       </Button>
     </div>
