@@ -5,9 +5,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 export default function CheckboxLabels() {
   const [state, setState] = React.useState({
-    checkedA: false,
-    checkedB: false,
-    checkedC: false,
+    checkedA: true,
+    checkedB: true,
+    checkedC: true,
   });
 
   const handleChange = name => event => {
@@ -18,7 +18,12 @@ export default function CheckboxLabels() {
     <FormGroup row>
       <FormControlLabel
         control={
-          <Checkbox checked={state.checkedA} onChange={handleChange('checkedA')} value="checkedA" color="default" />
+          <Checkbox 
+            checked={state.checkedA} 
+            onChange={handleChange('checkedA')} 
+            value="checkedA" 
+            color="default" 
+          />
         }
         label="Mâle"
         
@@ -37,9 +42,9 @@ export default function CheckboxLabels() {
       <FormControlLabel
         control={
           <Checkbox
-            checked={state.checkedB}
+            checked={state.checkedC}
             onChange={handleChange('checkedC')}
-            value="checkedB"
+            value="checkedC"
             color="default"
           />
         }
