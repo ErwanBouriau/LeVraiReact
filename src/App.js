@@ -2,10 +2,9 @@ import React from 'react';
 import './App.css';
 import CheckboxLabels from './components/CheckboxLabels';
 import Match from './components/Match';
-import BoutonMaPlanete from './components/BoutonMaPlanete';
+import Bouton from './components/Bouton';
 import EspeceListe from './components/EspeceListe';
 import AgeSlider from './components/AgeSlider';
-import BoutonValider from './components/BoutonValider';
 
 
 
@@ -33,7 +32,7 @@ class App extends React.Component {
 			
 			<div className="filters">
 				<div className="filtersItem">
-					<BoutonMaPlanete className="maPlanete"/>
+					<Bouton className="maPlanete" label="ma planète"/>
 				</div>
 				<h3>Sexe</h3>
 				<div className="filtersItem">
@@ -50,7 +49,7 @@ class App extends React.Component {
 			</div>
 
 			<div className="valider">
-				<BoutonValider />
+				<Bouton label="valider"/>
 			</div>
 
 		</div>

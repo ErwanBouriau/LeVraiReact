@@ -66,7 +66,7 @@ export default class MultipleSelect extends React.Component {
     }
     this.setState({selected: tabTemp});
     console.log(this.state.selected);
-    this.props.matcher.updateEspeces(this.state.selected);
+    // this.props.matcher.updateEspeces(this.state.selected);
     
   }; 
 
@@ -83,10 +83,10 @@ export default class MultipleSelect extends React.Component {
           value={names}
           onChange={this.handleChange}
           input={<Input />}
-          renderValue={selected => {
+          renderValue={selected => {           
             return (
               <div>
-                {selected.map(value => (
+                {this.state.selected.map(value => (
                   <Chip key={value} label={value} />
                 ))}
               </div>
@@ -96,7 +96,7 @@ export default class MultipleSelect extends React.Component {
         >
           {names.map((name, index) => (
             <MenuItem key={name} value={name}>
-              <Checkbox />
+              <Checkbox checked={this.state.selected.indexOf(name) > -1} />
               <ListItemText primary={name} />
             </MenuItem>
           ))}
