@@ -8,14 +8,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function OutlinedButtons() {
-  const classes = useStyles();
+export default class Bouton extends React.Component {
+  render() {
+      const {label} = this.props;
 
-  return (
-    <div>
-      <Button variant="outlined"  className={classes.button}>
-        Ma planète
-      </Button>
-    </div>
-  );
+      return (  
+        <Button variant="outlined">
+          {label}
+        </Button>
+      )
+  }
 }
