@@ -7,6 +7,8 @@ export default class Match extends React.Component {
         this.state = {profiles: []};
 
         this.setProfiles();
+        console.log(this.state.profiles);
+        
       }
 
     setProfiles () {
@@ -25,7 +27,7 @@ export default class Match extends React.Component {
 
         return (  
             this.state.profiles.map(profile => (
-                <Card name={profile.name} localisation={profile.homeworld}/>
+                <Card name={profile.name} localisation={profile.homeworld} gender={profile.gender}/>
               ))
         )
     }
