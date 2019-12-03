@@ -15,6 +15,7 @@
   width: 75%;
   display: flex;
   flex-wrap: wrap;
+  overflow: scroll;
 }
 
 .filters {
@@ -31,14 +32,6 @@
   width: 100%;
   text-align: center;
   margin-bottom: 30px;
-}
-
-.valider {
-  height: auto;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  padding: 30px;
 }
 
 .filters h3{

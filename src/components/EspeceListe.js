@@ -55,24 +55,36 @@ export default class MultipleSelect extends React.Component {
   handleChange (event) {
     
     let difference = names.filter(x => !event.target.value.includes(x))[0];
-    let tabTemp = this.state.selected;
+    let tabTempEspeces = this.state.selected;
+    let tabTempProfiles = [];
 
     if (this.state.selected.includes(difference)) {
-      const index = tabTemp.indexOf(difference);
-      tabTemp.splice(index,1);
+      const index = tabTempEspeces.indexOf(difference);
+      tabTempEspeces.splice(index,1);
     }
     else {
-      tabTemp.push(difference);
+      tabTempEspeces.push(difference);
     }
-    this.setState({selected: tabTemp});
-    console.log(this.state.selected);
-    // this.props.matcher.updateEspeces(this.state.selected);
+    this.setState({selected: tabTempEspeces});
+    console.log("filtre =>", this.state.selected);
     
-  }; 
+    this.props.matcher.updateEspeces(this.state.selected);
+
+    // // TEST
+    // this.props.matcher.props.profiles.forEach(profile => {
+    //   if (this.state.selected.includes(profile.espece)) {
+    //       tabTempProfiles.push(profile)
+    //   }
+    // });
+    // this.props.matcher.setState(tabTempProfiles);
+    // console.log(tabTempProfiles);
+    
+
+  }
 
   render() {
     //const classes = useStyles();
-
+    
   return (
     <div>
       <FormControl>

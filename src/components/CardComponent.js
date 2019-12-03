@@ -19,13 +19,13 @@ render() {
           },
       };
 
-    const {name, first_name, localisation} = this.props;
+    const {name, localisation} = this.props;
     return (
         <Card style={styles.card}>
-        <CardMedia style={styles.photo} image={require ("../profil-male.png")}/>
+        <CardMedia style={styles.photo} image={require ("../profil-male.jpeg")}/>
         <CardContent>
-            <Typography variant="h4" color="textSecondary" component="p">
-                {first_name} {name || ""} 
+            <Typography variant="h5" color="textSecondary" component="p">
+                {name || ""} 
             </Typography>
             <Typography variant="body1" color="textSecondary" component="p">
             <RoomIcon /> {localisation}

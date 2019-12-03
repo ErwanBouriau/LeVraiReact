@@ -7,6 +7,7 @@ import EspeceListe from './components/EspeceListe';
 import AgeSlider from './components/AgeSlider';
 
 
+const personnages = [];
 
 class App extends React.Component {
 
@@ -14,17 +15,16 @@ class App extends React.Component {
         super(props)
 		this.state = {
 			sexe:["homme", "femme", "robot"], 
-			age: -1
+			age: -1,
 		}
-
+	
 	}
 
-	handleEspece (e) {
-		console.log("foo");
-	}
+
 
 	render() {
-		const matcher = <Match profiles={personnages} sexe={this.state.sexe} age={this.state.age} />;
+	const matcher = <Match profiles={this.state.personnages} sexe={this.state.sexe} age={this.state.age} />;
+
 	return (
 	<div className="content">
 		<div className="menu">
@@ -48,10 +48,6 @@ class App extends React.Component {
 				</div>
 			</div>
 
-			<div className="valider">
-				<Bouton label="valider"/>
-			</div>
-
 		</div>
 		<div className="profiles">
 			{matcher}
@@ -60,33 +56,5 @@ class App extends React.Component {
   );
 	}
 }
-
-const personnages = [
-	{
-		name: "Organa",
-		first_name: "Leia",
-		localisation: "Alderaan"
-	},
-	{
-		name: "Skywalker",
-		first_name: "Luke",
-		localisation: "Tatoine"
-	},
-	{
-		name: "Solo",
-		first_name: "Han",
-		localisation: "None"
-	},
-	{
-		name: "",
-		first_name: "R2-D2",
-		localisation: "Tatoine"
-	},
-	{
-		name: "Vader",
-		first_name: "Darth",
-		localisation: "Death Star"
-	},
-]
 
 export default App;
