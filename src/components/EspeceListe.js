@@ -37,24 +37,51 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Humain',
-  'Limace',
-  'Ewok',
-  'Wookie'
-];
+// let names = [
+//   //'Humain','Limace','Ewok','Wookie'
+// ];
+
+// for(let j=1; j<4; j++){
+//   let url = "https://swapi.co/api/species/?page=" + j;
+//   for(let i=0; i <10; i++){
+//     fetch(url).then(response => response.json())
+//       .then(result=> names.push(result.results[i].name))
+//   }
+// }
+// for(let i=0; i<7; i++){
+//   fetch("https://swapi.co/api/species/?page=4").then(response => response.json())
+//       .then(result=> {names.push(result.results[i].name)
+//       })
+// }
+
+
+
 
 export default class MultipleSelect extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {selected: []};
+    this.state = {selected: [],especes:[]};
     this.handleChange = this.handleChange.bind(this);
+
+    this.initSelect();
+  }
+
+  initSelect(){
+    let url = "https://swapi.co/api/species/?page=";
+    for (let i = 1; i <= 4; i++) {
+			fetch(url + i).then(response => response.json())
+				.then(result => { 
+          for(let i=0; i<result.results.length; i++){
+            this.setState(state => ({especes: state.especes.push(result.results[i])}))
+        }
+				})			
+    } 
   }
   
   handleChange (event) {
     
-    let difference = names.filter(x => !event.target.value.includes(x))[0];
+    let difference = this.state.especes.filter(x => !event.target.value.includes(x))[0];
     let tabTempEspeces = this.state.selected;
     let tabTempProfiles = [];
 
@@ -92,7 +119,7 @@ export default class MultipleSelect extends React.Component {
           labelId="demo-mutiple-checkbox-label"
           id="demo-mutiple-checkbox"
           multiple
-          value={names}
+          value={this.state.especes}
           onChange={this.handleChange}
           input={<Input />}
           renderValue={selected => {           
@@ -106,10 +133,10 @@ export default class MultipleSelect extends React.Component {
           }}
           MenuProps={MenuProps}
         >
-          {names.map((name, index) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={this.state.selected.indexOf(name) > -1} />
-              <ListItemText primary={name} />
+          {this.state.especes.map((espece, index) => (
+            <MenuItem key={espece.name} value={espece.name}>
+              <Checkbox checked={this.state.selected.indexOf(espece.name) > -1} />
+              <ListItemText primary={espece.name} />
             </MenuItem>
           ))}
         </Select>

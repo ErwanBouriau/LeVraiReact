@@ -31,9 +31,6 @@ class App extends React.Component {
 			<h1 className="titreF">Filtres</h1>
 			
 			<div className="filters">
-				<div className="filtersItem">
-					<Bouton className="maPlanete" label="ma planète"/>
-				</div>
 				<h3>Sexe</h3>
 				<div className="filtersItem">
 					<CheckboxLabels className="sexe"/>
