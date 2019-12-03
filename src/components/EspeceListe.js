@@ -73,8 +73,8 @@ export default class MultipleSelect extends React.Component {
 			fetch(url + i).then(response => response.json())
 				.then(result => { 
           for(let i=0; i<result.results.length; i++){
-            this.setState(state => ({especes: state.especes.push(result.results[i])}))
-        }
+            this.setState(state => ({especes: state.especes.push(result.results[i].name)}))
+          }
 				})			
     } 
   }
