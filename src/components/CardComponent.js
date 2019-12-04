@@ -44,7 +44,6 @@ render() {
             imgSrc = herma
             break;
     }
-    console.log(gender)
     return (
         <Card style={styles.card}>
         <CardMedia style={styles.photo} image={imgSrc}/>
