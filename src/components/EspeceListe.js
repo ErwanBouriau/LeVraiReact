@@ -1,5 +1,4 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -7,24 +6,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
-
-const useStyles = makeStyles(theme => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
-  },
-  chips: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  chip: {
-    margin: 2,
-  },
-  noLabel: {
-    marginTop: theme.spacing(3),
-  },
-}));
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -37,24 +18,55 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Humain',
-  'Limace',
-  'Ewok',
-  'Wookie'
-];
+// let names = [
+//   //'Humain','Limace','Ewok','Wookie'
+// ];
+
+// for(let j=1; j<4; j++){
+//   let url = "https://swapi.co/api/species/?page=" + j;
+//   for(let i=0; i <10; i++){
+//     fetch(url).then(response => response.json())
+//       .then(result=> names.push(result.results[i].name))
+//   }
+// }
+// for(let i=0; i<7; i++){
+//   fetch("https://swapi.co/api/species/?page=4").then(response => response.json())
+//       .then(result=> {names.push(result.results[i].name)
+//       })
+// }
+
+
+
 
 export default class MultipleSelect extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {selected: []};
+    this.state = {selected: [],especes:[]};
     this.handleChange = this.handleChange.bind(this);
+
+    this.initSelect();
   }
-  
+
+  initSelect(){
+    let url = "https://swapi.co/api/species/?page=";
+
+    for (let i = 1; i <= 4; i++) {
+			fetch(url + i).then(response => response.json())
+				.then(result => { 
+          const especes = this.state.especes;
+          for(let i=0; i<result.results.length; i++){
+            const name = result.results[i].name;
+            especes.push(name);
+          }
+          this.setState({especes: especes.sort()})
+        })	
+    }
+  }
+
   handleChange (event) {
     
-    let difference = names.filter(x => !event.target.value.includes(x))[0];
+    let difference = this.state.especes.filter(x => !event.target.value.includes(x))[0];
     let tabTempEspeces = this.state.selected;
     let tabTempProfiles = [];
 
@@ -66,8 +78,6 @@ export default class MultipleSelect extends React.Component {
       tabTempEspeces.push(difference);
     }
     this.setState({selected: tabTempEspeces});
-    console.log("filtre =>", this.state.selected);
-    console.log(this.props.matcher);
     
     this.props.matcher.updateEspeces(this.state.selected);
     
@@ -86,7 +96,7 @@ export default class MultipleSelect extends React.Component {
 
   render() {
     //const classes = useStyles();
-    
+
   return (
     <div>
       <FormControl>
@@ -94,7 +104,7 @@ export default class MultipleSelect extends React.Component {
           labelId="demo-mutiple-checkbox-label"
           id="demo-mutiple-checkbox"
           multiple
-          value={names}
+          value={this.state.especes}
           onChange={this.handleChange}
           input={<Input />}
           renderValue={selected => {           
@@ -108,10 +118,10 @@ export default class MultipleSelect extends React.Component {
           }}
           MenuProps={MenuProps}
         >
-          {names.map((name, index) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={this.state.selected.indexOf(name) > -1} />
-              <ListItemText primary={name} />
+          {this.state.especes.map(espece => (
+            <MenuItem key={espece} value={espece}>
+              <Checkbox checked={this.state.selected.indexOf(espece) > -1}/>
+              <ListItemText primary={espece} />
             </MenuItem>
           ))}
         </Select>

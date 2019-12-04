@@ -12,7 +12,12 @@ import herma from "../profil-herma.png"
 
 export default class RecipeReviewCard extends React.Component {
 
-render() {
+    constructor(props) {
+        super(props);
+        this.state = {vraiLoc: null};
+      }
+
+    render() {
     const styles = {
         card: {
           width: 345,
@@ -24,7 +29,12 @@ render() {
           },
       };
 
+
     const {name, localisation, gender} = this.props;
+    {fetch(localisation)
+        .then(response => response.json())
+        .then(result => this.setState({vraiLoc: result.name}))}
+
     let imgSrc;
 
     switch(gender) {
@@ -44,6 +54,7 @@ render() {
             imgSrc = herma
             break;
     }
+
     return (
         <Card style={styles.card}>
         <CardMedia style={styles.photo} image={imgSrc}/>
@@ -52,11 +63,11 @@ render() {
                 {name || ""} 
             </Typography>
             <Typography variant="body1" color="textSecondary" component="p">
-            <RoomIcon /> {localisation}
+            <RoomIcon /> {this.state.vraiLoc}
             </Typography>
         </CardContent>
     </Card>
     )
-}
+    }
 }
     
