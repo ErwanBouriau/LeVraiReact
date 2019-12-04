@@ -5,8 +5,9 @@ export default class Match extends React.Component {
     constructor(props) {
         super(props);
         this.state = {profiles: []};
-
         this.setProfiles();
+        console.log(this.state.profiles);
+        
       }
 
     setProfiles () {
@@ -25,19 +26,19 @@ export default class Match extends React.Component {
 
         return (  
             this.state.profiles.map(profile => (
-                <Card name={profile.name} localisation={profile.homeworld}/>
+                <Card name={profile.name} localisation={profile.homeworld} gender={profile.gender}/>
               ))
         )
     }
 
     updateEspeces(filtre) {
         let tabTemp;
-        this.profiles.forEach(profile => {
+        this.state.profiles.forEach(profile => {
             if (filtre.include(profile.espece)) {
                 tabTemp.push(profile)
             }
         });
-        this.profiles = tabTemp;
-        console.log(this.profiles);     
+        this.state.profiles = tabTemp;
+        console.log(this.state.profiles);     
     }
 }

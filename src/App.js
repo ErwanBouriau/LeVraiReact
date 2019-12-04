@@ -17,14 +17,9 @@ class App extends React.Component {
 			sexe:["homme", "femme", "robot"], 
 			age: -1,
 		}
-	
 	}
 
-
-
 	render() {
-	const matcher = <Match profiles={this.state.personnages} sexe={this.state.sexe} age={this.state.age} />;
-
 	return (
 	<div className="content">
 		<div className="menu">
@@ -41,16 +36,17 @@ class App extends React.Component {
 				</div>
 				<h3>Espèces</h3>
 				<div className="filtersItem">
-					<EspeceListe className="espece" matcher={matcher} />
+					<EspeceListe className="espece"/>
 				</div>
 			</div>
 
 		</div>
 		<div className="profiles">
-			{matcher}
+		<Match profiles={this.state.personnages} sexe={this.state.sexe} age={this.state.age} />
 		</div>
 	</div>
   );
+
 	}
 }
 

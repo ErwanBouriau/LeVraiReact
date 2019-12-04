@@ -80,6 +80,7 @@ export default class MultipleSelect extends React.Component {
     this.setState({selected: tabTempEspeces});
     
     this.props.matcher.updateEspeces(this.state.selected);
+    
 
     // // TEST
     // this.props.matcher.props.profiles.forEach(profile => {
