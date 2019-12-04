@@ -1,5 +1,4 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -7,24 +6,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
-
-const useStyles = makeStyles(theme => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
-  },
-  chips: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  chip: {
-    margin: 2,
-  },
-  noLabel: {
-    marginTop: theme.spacing(3),
-  },
-}));
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -69,16 +50,20 @@ export default class MultipleSelect extends React.Component {
 
   initSelect(){
     let url = "https://swapi.co/api/species/?page=";
+
     for (let i = 1; i <= 4; i++) {
 			fetch(url + i).then(response => response.json())
 				.then(result => { 
+          const especes = this.state.especes;
           for(let i=0; i<result.results.length; i++){
-            this.setState(state => ({especes: state.especes.push(result.results[i].name)}))
+            const name = result.results[i].name;
+            especes.push(name);
           }
-				})			
-    } 
+          this.setState({especes: especes.sort()})
+        })	
+    }
   }
-  
+
   handleChange (event) {
     
     let difference = this.state.especes.filter(x => !event.target.value.includes(x))[0];
@@ -93,7 +78,6 @@ export default class MultipleSelect extends React.Component {
       tabTempEspeces.push(difference);
     }
     this.setState({selected: tabTempEspeces});
-    console.log("filtre =>", this.state.selected);
     
     this.props.matcher.updateEspeces(this.state.selected);
 
@@ -111,7 +95,7 @@ export default class MultipleSelect extends React.Component {
 
   render() {
     //const classes = useStyles();
-    
+
   return (
     <div>
       <FormControl>
@@ -133,10 +117,10 @@ export default class MultipleSelect extends React.Component {
           }}
           MenuProps={MenuProps}
         >
-          {this.state.especes.map((espece, index) => (
-            <MenuItem key={espece.name} value={espece.name}>
-              <Checkbox checked={this.state.selected.indexOf(espece.name) > -1} />
-              <ListItemText primary={espece.name} />
+          {this.state.especes.map(espece => (
+            <MenuItem key={espece} value={espece}>
+              <Checkbox checked={this.state.selected.indexOf(espece) > -1}/>
+              <ListItemText primary={espece} />
             </MenuItem>
           ))}
         </Select>
