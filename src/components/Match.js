@@ -12,10 +12,13 @@ export default class Match extends React.Component {
 
     setProfiles () {
 		let url = "https://swapi.co/api/people/?page=";
-
+        console.log("foo");
 		for (let i = 1; i <= 9; i++) {
 			fetch(url + i).then(response => response.json())
 				.then(result => {
+                    console.log("bar");
+                    console.log(result);
+                    
 					this.setState(state => ({profiles: state.profiles.concat(result.results)}))
 				})			
 		}

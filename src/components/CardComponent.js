@@ -31,9 +31,12 @@ export default class RecipeReviewCard extends React.Component {
 
 
     const {name, localisation, gender} = this.props;
-    {fetch(localisation)
-        .then(response => response.json())
-        .then(result => this.setState({vraiLoc: result.name}))}
+     {fetch(localisation)
+         .then(response => response.json())
+         .then(result => this.setState({vraiLoc: result.name}))
+         .catch( error => {console.log(error); })    
+    }
+
 
     let imgSrc;
 
@@ -59,7 +62,7 @@ export default class RecipeReviewCard extends React.Component {
         <Card style={styles.card}>
         <CardMedia style={styles.photo} image={imgSrc}/>
         <CardContent>
-            <Typography variant="h5" color="textSecondary" component="p">
+            <Typography variant="h5" color="textSecondary" component="p" data-testid="name">
                 {name || ""} 
             </Typography>
             <Typography variant="body1" color="textSecondary" component="p">
