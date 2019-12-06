@@ -17,33 +17,30 @@ afterEach(() => {
   container = null;
 });
 
-it("renders with fake words", async () => {
+it("test API", async () => {
   const profile = {
     results: [{
         name: "Luke Skywalker",
-        gender: "male"
-  }]
-};
-    const location = {
-        name: "terre"
-    }
+        gender: "male",
+        homeworld: "https://swapi.co/api/planets/1/"
+    }]
+  };
 
-  jest.spyOn(global, "fetch").mockImplementation((url) =>
-  {
-    let fakeData;  
+  const location = {
+    name: "terre"
+  }
+
+  function fakeFetch(url) {
     console.log(url);
-    if (url.includes("people")) {
-          fakeData = profile
-      } else {
-          
-          fakeData = location;
-      }
+    
+    let fakedata = (url.includes("people") ? profile : location);
 
     return Promise.resolve({
-      json: () => Promise.resolve(profile)
+      json: () => Promise.resolve(fakedata)
     })
-}
-  );
+  }
+
+  jest.spyOn(global, "fetch").mockImplementation(fakeFetch);
 
   // Use the asynchronous version of act to apply resolved promises
   await act(async () => {

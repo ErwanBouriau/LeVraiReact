@@ -16,11 +16,9 @@ export default class Match extends React.Component {
 		for (let i = 1; i <= 9; i++) {
 			fetch(url + i).then(response => response.json())
 				.then(result => {
-                    console.log("bar");
-                    console.log(result);
-                    
 					this.setState(state => ({profiles: state.profiles.concat(result.results)}))
-				})			
+                })
+                .catch( (error) => console.log(error))			
 		}
     }
     
