@@ -2,12 +2,8 @@ import React from 'react';
 import './App.css';
 import CheckboxLabels from './components/CheckboxLabels';
 import Match from './components/Match';
-import Bouton from './components/Bouton';
 import EspeceListe from './components/EspeceListe';
 import AgeSlider from './components/AgeSlider';
-
-
-const personnages = [];
 
 class App extends React.Component {
 

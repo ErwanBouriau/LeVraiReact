@@ -6,6 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
+import { connect } from 'react-redux'
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,27 +19,7 @@ const MenuProps = {
   },
 };
 
-// let names = [
-//   //'Humain','Limace','Ewok','Wookie'
-// ];
-
-// for(let j=1; j<4; j++){
-//   let url = "https://swapi.co/api/species/?page=" + j;
-//   for(let i=0; i <10; i++){
-//     fetch(url).then(response => response.json())
-//       .then(result=> names.push(result.results[i].name))
-//   }
-// }
-// for(let i=0; i<7; i++){
-//   fetch("https://swapi.co/api/species/?page=4").then(response => response.json())
-//       .then(result=> {names.push(result.results[i].name)
-//       })
-// }
-
-
-
-
-export default class MultipleSelect extends React.Component {
+class EspeceListe extends React.Component {
 
   constructor(props) {
     super(props);
@@ -68,7 +49,6 @@ export default class MultipleSelect extends React.Component {
     
     let difference = this.state.especes.filter(x => !event.target.value.includes(x))[0];
     let tabTempEspeces = this.state.selected;
-    let tabTempProfiles = [];
 
     if (this.state.selected.includes(difference)) {
       const index = tabTempEspeces.indexOf(difference);
@@ -80,22 +60,10 @@ export default class MultipleSelect extends React.Component {
     this.setState({selected: tabTempEspeces});
     
     this.props.matcher.updateEspeces(this.state.selected);
-    
-
-    // // TEST
-    // this.props.matcher.props.profiles.forEach(profile => {
-    //   if (this.state.selected.includes(profile.espece)) {
-    //       tabTempProfiles.push(profile)
-    //   }
-    // });
-    // this.props.matcher.setState(tabTempProfiles);
-    // console.log(tabTempProfiles);
-    
 
   }
 
   render() {
-    //const classes = useStyles();
 
   return (
     <div>
@@ -130,3 +98,10 @@ export default class MultipleSelect extends React.Component {
   );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    favoritesEspeces: state.favoritesEspeces
+  }
+}
+
+export default connect(mapStateToProps)(EspeceListe)
