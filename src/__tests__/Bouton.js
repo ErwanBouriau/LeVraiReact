@@ -1,26 +1,23 @@
 import React from "react";
 import {  render, unmountComponentAtNode } from "react-dom";
-import ReactDOM from 'react-dom';
 import { act } from "react-dom/test-utils";
-import Bouton from '../components/Bouton';
+import Bouton from '../components/BoutonHome';
 
 let container = null;
 
 beforeEach( () => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
+container = document.createElement("div");
+document.body.appendChild(container);
 });
 
 afterEach( () => {
-  unmountComponentAtNode(container);
-  container.remove();
+unmountComponentAtNode(container);
+container.remove();
 });
 
 it('renders without crashing', () => {
     act( () => {
-        render(<Bouton label="test"></Bouton>, container);
+    render(<Bouton label="test"></Bouton>, container);
     });
-    expect(document.querySelector("button").textContent).toMatch(
-      "test"
-    );
+    expect(document.querySelector("button").textContent).toMatch("test");
 })

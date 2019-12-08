@@ -8,6 +8,7 @@ export default function CheckboxLabels() {
     checkedA: true,
     checkedB: true,
     checkedC: true,
+    checkedD: true
   });
 
   const handleChange = name => event => {
@@ -21,8 +22,8 @@ export default function CheckboxLabels() {
           <Checkbox 
             checked={state.checkedA} 
             onChange={handleChange('checkedA')} 
-            value="checkedA" 
-            color="default" 
+            value="male" 
+            color="primary" 
           />
         }
         label="Mâle"
@@ -33,8 +34,8 @@ export default function CheckboxLabels() {
           <Checkbox
             checked={state.checkedB}
             onChange={handleChange('checkedB')}
-            value="checkedB"
-            color="default"
+            value="female"
+            color="primary"
           />
         }
         label="Femelle"
@@ -44,11 +45,22 @@ export default function CheckboxLabels() {
           <Checkbox
             checked={state.checkedC}
             onChange={handleChange('checkedC')}
-            value="checkedC"
-            color="default"
+            value="robot"
+            color="primary"
           />
         }
         label="Robot"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={state.checkedD}
+            onChange={handleChange('checkedD')}
+            value="hermaphrodite"
+            color="primary"
+          />
+        }
+        label="Hermaphrodite"
       />       
     </FormGroup>
   );
