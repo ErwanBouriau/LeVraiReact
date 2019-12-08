@@ -11,14 +11,16 @@ class Main extends React.Component {
 		this.state = {
 			sexe:["homme", "femme", "robot"], 
 			age: -1,
-		}
+		}	
 	}
 
 	render() {
+	const matcher = <Match profiles={this.state.personnages} sexe={this.state.sexe} age={this.state.age} />
 	return (
+	 
 	<div className="content">
 		<div className="menu">
-			<h1 className="titreF">Filtres</h1>
+			<h1 className="titreF" data-testid="filter-title">Filtres</h1>
 			
 			<div className="filters">
 				<h3>Sexe</h3>
@@ -31,13 +33,13 @@ class Main extends React.Component {
 				</div>
 				<h3>Espèces</h3>
 				<div className="filtersItem">
-					<EspeceListe className="espece"/>
+					<EspeceListe className="espece" matcher={matcher}/>
 				</div>
 			</div>
 
 		</div>
 		<div className="profiles">
-		<Match profiles={this.state.personnages} sexe={this.state.sexe} age={this.state.age} />
+		{/* <Match profiles={this.state.personnages} sexe={this.state.sexe} age={this.state.age} /> */ matcher}
 		</div>
 	</div>
   );

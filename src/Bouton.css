@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Star Wars Outlined";
+    src: url("./SfDistantGalaxyOutline-xoeO.ttf") format("truetype")
+   }
+
+button {
+    font-family: "Star Wars Outlined";
+    background-color: transparent;
+    border: transparent;
+    color: #fcdc12;
+    cursor: pointer;
+    font-size: 100px;
+}

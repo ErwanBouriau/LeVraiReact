@@ -14,16 +14,16 @@ export default class RecipeReviewCard extends React.Component {
 
     constructor(props) {
         super(props);
-        // this.setLocalisation(this.props.localisation);
+        this.setLocalisation(this.props.localisation);
         this.state = {vraiLoc: null}
     }
 
-    // setLocalisation(localisation) {
-    //     fetch(localisation)
-    //         .then(response => response.json())
-    //         .then(result => this.setState({vraiLoc: result.name}))
-    //         .catch( error => {console.log(error); })   
-    // }
+    setLocalisation(localisation) {
+        fetch(localisation)
+            .then(response => response.json())
+            .then(result => this.setState({vraiLoc: result.name}))
+            .catch( error => {console.log(error); })   
+    }
 
     render() {
     const styles = {

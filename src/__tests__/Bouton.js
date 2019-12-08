@@ -1,8 +1,7 @@
 import React from "react";
 import {  render, unmountComponentAtNode } from "react-dom";
-import ReactDOM from 'react-dom';
 import { act } from "react-dom/test-utils";
-import Bouton from '../components/Bouton';
+import Bouton from '../components/BoutonHome';
 
 let container = null;
 
@@ -20,7 +19,5 @@ it('renders without crashing', () => {
     act( () => {
     render(<Bouton label="test"></Bouton>, container);
     });
-    expect(document.querySelector("button").textContent).toMatch(
-    "test"
-    );
+    expect(document.querySelector("button").textContent).toMatch("test");
 })

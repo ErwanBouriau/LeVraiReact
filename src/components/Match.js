@@ -7,7 +7,6 @@ export default class Match extends React.Component {
         this.state = {profiles: []};
         this.setProfiles();
         console.log(this.state.profiles);
-        
       }
 
     setProfiles () {
@@ -19,17 +18,7 @@ export default class Match extends React.Component {
 					this.setState(state => ({profiles: state.profiles.concat(result.results)}))
                 })
                 .catch( (error) => console.log(error))			
-		}
-    }
-    
-    render() {
-        const {sexe, age} = this.props;
-
-        return (  
-            this.state.profiles.map(profile => (
-                <Card name={profile.name} localisation={profile.homeworld} gender={profile.gender}/>
-              ))
-        )
+        }
     }
 
     updateEspeces(filtre) {
@@ -41,5 +30,15 @@ export default class Match extends React.Component {
         });
         this.state.profiles = tabTemp;
         console.log(this.state.profiles);     
+    }
+    
+    render() {
+        const {sexe, age} = this.props;
+
+        return (  
+            this.state.profiles.map(profile => (
+                <Card name={profile.name} localisation={profile.homeworld} gender={profile.gender}/>
+              ))
+        )
     }
 }
