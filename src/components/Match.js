@@ -1,7 +1,8 @@
 import React from 'react';
 import Card from './CardComponent';
+import { connect } from 'react-redux'
 
-export default class Match extends React.Component {
+class Match extends React.Component {
     constructor(props) {
         super(props);
         this.state = {profiles: []};
@@ -42,3 +43,20 @@ export default class Match extends React.Component {
         )
     }
 }
+
+const getVisibleUsers = (users, filter) => {
+    switch (filter) {
+      case 'SHOW_MALE':
+        return this.state.profiles.filter(u => u.gender === "male");
+      case 'SHOW_FEMALE':
+        return this.state.profiles.filter(u => u.gender === "female");
+      default:
+        throw new Error('Unknown filter: ' + filter);
+    }
+  };
+
+const mapStateToProps = state => ({
+    users: getVisibleUsers(state.users, state.visibilityFilter),
+});
+
+export default connect(mapStateToProps, null)(Match);

@@ -1,27 +1,50 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { setVisibilityFilter } from '../actions/actions'
 
-export default function CheckboxLabels() {
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-    checkedC: true,
-    checkedD: true
-  });
+class CheckboxLabels extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+			checkedA: true,
+      checkedB: true,
+      checkedC: true,
+      checkedD: true
+		}	
+  }
 
-  const handleChange = name => event => {
-    setState({ ...state, [name]: event.target.checked });
+  handleChange = name => event => {
+    this.setState({ ...this.state, [name]: event.target.checked });
+    const value = event.target.value;
+    let filter = '';
+    switch(value) {
+      case "male":
+        filter = event.target.checked? 'SHOW_MALE': 'HIDE_MALE';
+        break;
+      case "female":
+        filter = event.target.checked? 'SHOW_FEMALE': 'HIDE_FEMALE';
+        break;
+      case "robot":
+        filter = event.target.checked? 'SHOW_ROBOT': 'HIDE_ROBOT';
+        break;
+      case "hermaphrodite":
+        filter = event.target.checked? 'SHOW_HERMA': 'HIDE_HERMA';
+        break;
+    }
+    return setVisibilityFilter(filter);
   };
 
+render() {
   return (
     <FormGroup row>
       <FormControlLabel
         control={
           <Checkbox 
-            checked={state.checkedA} 
-            onChange={handleChange('checkedA')} 
+            checked={this.state.checkedA} 
+            onChange={this.handleChange('checkedA')} 
             value="male" 
             color="primary" 
           />
@@ -32,8 +55,8 @@ export default function CheckboxLabels() {
       <FormControlLabel
         control={
           <Checkbox
-            checked={state.checkedB}
-            onChange={handleChange('checkedB')}
+            checked={this.state.checkedB}
+            onChange={this.handleChange('checkedB')}
             value="female"
             color="primary"
           />
@@ -43,8 +66,8 @@ export default function CheckboxLabels() {
       <FormControlLabel
         control={
           <Checkbox
-            checked={state.checkedC}
-            onChange={handleChange('checkedC')}
+            checked={this.state.checkedC}
+            onChange={this.handleChange('checkedC')}
             value="robot"
             color="primary"
           />
@@ -54,8 +77,8 @@ export default function CheckboxLabels() {
       <FormControlLabel
         control={
           <Checkbox
-            checked={state.checkedD}
-            onChange={handleChange('checkedD')}
+            checked={this.state.checkedD}
+            onChange={this.handleChange('checkedD')}
             value="hermaphrodite"
             color="primary"
           />
@@ -65,4 +88,18 @@ export default function CheckboxLabels() {
     </FormGroup>
   );
 }
+}
+
+const mapStateToProps = state => ({
+  checked: 'SHOW_MALE' === state.visibilityFilter
+})
+
+const mapDispatchToProps = dispatch => ({
+  handleChange: (e) => dispatch(this.handleChange(e))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CheckboxLabels);
 

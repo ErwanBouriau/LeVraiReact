@@ -39,7 +39,7 @@ class Main extends React.Component {
 
 		</div>
 		<div className="profiles">
-		{/* <Match profiles={this.state.personnages} sexe={this.state.sexe} age={this.state.age} /> */ matcher}
+			{matcher}
 		</div>
 	</div>
   );
