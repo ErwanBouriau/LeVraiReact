@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import RouterApp from "./components/Router.js";
+import {addUser} from './components/actions';
+import { connect } from 'react-redux';
 
 class App extends React.Component {
 
@@ -13,4 +15,8 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+	addUser: id => dispatch(addUser(id)),
+  });
+  
+export default connect(null, mapDispatchToProps)(App);

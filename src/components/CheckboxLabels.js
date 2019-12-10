@@ -2,8 +2,9 @@ import React from 'react';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { connect } from 'react-redux';
 
-export default function CheckboxLabels() {
+function CheckboxLabels() {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -13,6 +14,10 @@ export default function CheckboxLabels() {
 
   const handleChange = name => event => {
     setState({ ...state, [name]: event.target.checked });
+    switch(name){
+      case 'checkedA': return getVisibleUsers(state.users, 'SHOW_MEN')
+      case 'checkedB': return getVisibleUsers(state.users, 'SHOW_WOMEN')
+    }
   };
 
   return (
@@ -66,3 +71,22 @@ export default function CheckboxLabels() {
   );
 }
 
+const getVisibleUsers = (users, filter) => {
+  switch (filter) {
+    case 'SHOW_ALL':
+      return users;
+    case 'SHOW_MEN':
+      return users.filter(u => u.gender === "male");
+    case 'SHOW_WOMEN':
+      return users.filter(u => u.gender === "female");
+    default:
+      throw new Error('Unknown filter: ' + filter);
+  }
+};
+
+const mapStateToProps = state => ({
+  users: getVisibleUsers(state.users, state.visibilityFilter),
+});
+
+
+export default connect(mapStateToProps, null)(CheckboxLabels);

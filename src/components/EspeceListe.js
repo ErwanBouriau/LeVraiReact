@@ -18,26 +18,6 @@ const MenuProps = {
   },
 };
 
-// let names = [
-//   //'Humain','Limace','Ewok','Wookie'
-// ];
-
-// for(let j=1; j<4; j++){
-//   let url = "https://swapi.co/api/species/?page=" + j;
-//   for(let i=0; i <10; i++){
-//     fetch(url).then(response => response.json())
-//       .then(result=> names.push(result.results[i].name))
-//   }
-// }
-// for(let i=0; i<7; i++){
-//   fetch("https://swapi.co/api/species/?page=4").then(response => response.json())
-//       .then(result=> {names.push(result.results[i].name)
-//       })
-// }
-
-
-
-
 export default class MultipleSelect extends React.Component {
 
   constructor(props) {
@@ -79,12 +59,10 @@ export default class MultipleSelect extends React.Component {
     }
     this.setState({selected: tabTempEspeces});
     
-  //  this.props.matcher.updateEspeces(this.state.selected);
   
   }
 
   render() {
-    //const classes = useStyles();
 
   return (
     <div>
