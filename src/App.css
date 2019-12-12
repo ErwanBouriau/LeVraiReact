@@ -23,7 +23,7 @@ jaune : #fcdc12
 .menu {
   height: 100%;
   width: 25%;
-  border-right: 1px solid lightgray;
+  border-right: 1px solid #fcdc12;
 }
 
 .profiles {
