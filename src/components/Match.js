@@ -6,57 +6,45 @@ class Match extends React.Component {
     constructor(props) {
         super(props);
         this.state = {profiles: []};
-        this.setProfiles();
+        //this.setProfiles();
         console.log(this.state.profiles);
       }
 
-    setProfiles () {
-		let url = "https://swapi.co/api/people/?page=";
-        console.log("foo");
-		for (let i = 1; i <= 9; i++) {
-			fetch(url + i).then(response => response.json())
-				.then(result => {
-					this.setState(state => ({profiles: state.profiles.concat(result.results)}))
-                })
-                .catch( (error) => console.log(error))			
-        }
-    }
-
-    updateEspeces(filtre) {
-        let tabTemp;
-        this.state.profiles.forEach(profile => {
-            if (filtre.include(profile.espece)) {
-                tabTemp.push(profile)
-            }
-        });
-        this.state.profiles = tabTemp;
-        console.log(this.state.profiles);     
-    }
+    static defaultProps = {
+      profiles: [
+        {
+          name: 'John Doe',
+          gender: 'male',
+          homeworld: "https://swapi.co/api/planets/1/"
+        },
+      ],
+    };
     
     render() {
-        const {sexe, age} = this.props;
-
+        const {sexe, age} = this.props;    
         return (  
-            this.state.profiles.map(profile => (
-                <Card name={profile.name} localisation={profile.homeworld} gender={profile.gender}/>
-              ))
+        this.props.profiles.map((prof, index) => (
+                <Card key={index} name={prof.name} localisation={prof.homeworld} gender={prof.gender}/>
+        ))       
         )
     }
 }
 
-const getVisibleUsers = (users, filter) => {
+const getVisibleUsers = (profiles, filter) => {
     switch (filter) {
+      case 'SHOW_ALL':
+        return profiles;
       case 'SHOW_MALE':
-        return this.state.profiles.filter(u => u.gender === "male");
+        return profiles.filter(p => p.gender === "male");
       case 'SHOW_FEMALE':
-        return this.state.profiles.filter(u => u.gender === "female");
+        return profiles.filter(p => p.gender === "female");
       default:
         throw new Error('Unknown filter: ' + filter);
     }
   };
 
 const mapStateToProps = state => ({
-    users: getVisibleUsers(state.users, state.visibilityFilter),
+    profiles: getVisibleUsers(state.profiles, state.visibilityFilter),
 });
 
 export default connect(mapStateToProps, null)(Match);
