@@ -32,12 +32,16 @@ class Match extends React.Component {
 
 const getVisibleUsers = (profiles, filter) => {
     switch (filter) {
-      case 'SHOW_ALL':
+      case 'SHOW_ALL':      
         return profiles;
       case 'SHOW_MALE':
         return profiles.filter(p => p.gender === "male");
       case 'SHOW_FEMALE':
         return profiles.filter(p => p.gender === "female");
+      case 'SHOW_ROBOT':
+        return profiles.filter(p => p.gender === "n/a" || "none");
+      case 'SHOW_HERMA':
+          return profiles.filter(p => p.gender === "hermaphrodite");
       default:
         throw new Error('Unknown filter: ' + filter);
     }

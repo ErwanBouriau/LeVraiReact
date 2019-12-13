@@ -86,10 +86,7 @@ render() {
 }
 
 const mapStateToProps = state => ({
-  checkedA: 'SHOW_MALE' === state.visibilityFilter,
-  checkedB: 'SHOW_FEMALE' === state.visibilityFilter,
-  checkedC: 'SHOW_ROBOT' === state.visibilityFilter,
-  checkedD: 'SHOW_HERMA' === state.visibilityFilter
+
 })
 
 
